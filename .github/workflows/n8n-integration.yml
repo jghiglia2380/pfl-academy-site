@@ -1,0 +1,141 @@
+name: N8N Content Integration
+
+on:
+  # This workflow can be triggered manually
+  workflow_dispatch:
+  
+  # Or it can be triggered when the content repository is updated
+  repository_dispatch:
+    types: [content-update]
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Site Repository
+        uses: actions/checkout@v3
+        with:
+          path: site-repo
+      
+      - name: Checkout Content Repository
+        uses: actions/checkout@v3
+        with:
+          repository: jghiglia2380/pfl-academy-content
+          path: content-repo
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install Dependencies
+        run: |
+          cd site-repo
+          npm install
+      
+      - name: Update Content
+        run: |
+          # Create a script to transfer and format content
+          cat > transfer-content.js << 'SCRIPT'
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Function to format student content
+          function formatStudentContent(contentPath, templatePath, outputPath) {
+            // Read content and template
+            const content = fs.readFileSync(contentPath, 'utf8');
+            const template = fs.readFileSync(templatePath, 'utf8');
+            
+            // Insert content into template
+            // This is a simplified example - actual implementation would be more sophisticated
+            const formattedContent = template.replace('<\!-- CONTENT PLACEHOLDER -->', content);
+            
+            // Write to output
+            fs.writeFileSync(outputPath, formattedContent);
+          }
+          
+          // Function to format teacher guide
+          function formatTeacherGuide(day1Path, day2Path, templatePath, outputPath) {
+            // Read content and template
+            const day1Content = fs.readFileSync(day1Path, 'utf8');
+            const day2Content = fs.readFileSync(day2Path, 'utf8');
+            const template = fs.readFileSync(templatePath, 'utf8');
+            
+            // Insert content into template
+            // This is a simplified example - actual implementation would be more sophisticated
+            let formattedContent = template.replace('<\!-- DAY1 CONTENT PLACEHOLDER -->', day1Content);
+            formattedContent = formattedContent.replace('<\!-- DAY2 CONTENT PLACEHOLDER -->', day2Content);
+            
+            // Write to output
+            fs.writeFileSync(outputPath, formattedContent);
+          }
+          
+          // Process all standards and chapters
+          const contentRoot = 'content-repo';
+          const siteRoot = 'site-repo';
+          
+          // Templates
+          const studentDay1Template = path.join(siteRoot, 'standards/Standard-1/Chapter-1-1/student/day1.html');
+          const studentDay2Template = path.join(siteRoot, 'standards/Standard-1/Chapter-1-1/student/day2.html');
+          const teacherGuideTemplate = path.join(siteRoot, 'standards/Standard-1/Chapter-1-1/teacher/guide.html');
+          
+          // Process standards
+          const standardDirs = fs.readdirSync(contentRoot).filter(dir => dir.startsWith('Standard-'));
+          
+          standardDirs.forEach(standardDir => {
+            const standard = standardDir.replace('Standard-', '');
+            const chaptersPath = path.join(contentRoot, standardDir);
+            
+            // Process chapters
+            const chapterDirs = fs.readdirSync(chaptersPath).filter(dir => \!dir.includes('.'));
+            
+            chapterDirs.forEach(chapterDir => {
+              const chapter = chapterDir;
+              console.log(`Processing ${standardDir}/${chapterDir}`);
+              
+              // Create site directories
+              const siteChapterPath = path.join(siteRoot, `standards/Standard-${standard}/Chapter-${standard}-${chapter}`);
+              const siteStudentPath = path.join(siteChapterPath, 'student');
+              const siteTeacherPath = path.join(siteChapterPath, 'teacher');
+              
+              fs.mkdirSync(siteStudentPath, { recursive: true });
+              fs.mkdirSync(siteTeacherPath, { recursive: true });
+              
+              // Get content paths
+              const contentChapterPath = path.join(contentRoot, standardDir, chapterDir);
+              const day1ContentPath = path.join(contentChapterPath, 'student/day1.md');
+              const day2ContentPath = path.join(contentChapterPath, 'student/day2.md');
+              const teacherDay1Path = path.join(contentChapterPath, 'teacher/day1.md');
+              const teacherDay2Path = path.join(contentChapterPath, 'teacher/day2.md');
+              
+              // Format and write student content
+              if (fs.existsSync(day1ContentPath)) {
+                formatStudentContent(day1ContentPath, studentDay1Template, path.join(siteStudentPath, 'day1.html'));
+              }
+              
+              if (fs.existsSync(day2ContentPath)) {
+                formatStudentContent(day2ContentPath, studentDay2Template, path.join(siteStudentPath, 'day2.html'));
+              }
+              
+              // Format and write teacher guide
+              if (fs.existsSync(teacherDay1Path) && fs.existsSync(teacherDay2Path)) {
+                formatTeacherGuide(teacherDay1Path, teacherDay2Path, teacherGuideTemplate, path.join(siteTeacherPath, 'guide.html'));
+              }
+            });
+          });
+          
+          console.log('Content update complete');
+          SCRIPT
+          
+          # Run the script
+          node transfer-content.js
+      
+      - name: Commit and Push Changes
+        run: |
+          cd site-repo
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "Update content from PFL Academy Content Repository"
+          git push

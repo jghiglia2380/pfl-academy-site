@@ -1,0 +1,66 @@
+<\!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter {{STANDARD}}.{{CHAPTER}} - Day 1 | PFL Academy</title>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-indigo-600 text-white p-4 shadow-md fixed top-0 left-0 right-0 z-40">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">PFL Academy</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="../../../../index.html" class="hover:text-indigo-200">Home</a></li>
+                    <li><a href="../../../index.html" class="hover:text-indigo-200">Curriculum</a></li>
+                    <li><a href="#" class="hover:text-indigo-200">Resources</a></li>
+                    <li><a href="#" class="hover:text-indigo-200">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="h-16"></div> <\!-- Spacer for fixed header -->
+
+    <div class="grid grid-cols-1 lg:grid-cols-10">
+        <\!-- Sidebar Navigation -->
+        <aside class="lg:col-span-2 chapter-nav lg:fixed lg:h-full lg:overflow-y-auto lg:top-16 p-4">
+            <div class="mb-6">
+                <a href="../../index.html" class="flex items-center text-indigo-600 mb-2">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                    Back to Standard {{STANDARD}}
+                </a>
+                <h2 class="text-lg font-semibold text-gray-700">Chapter {{STANDARD}}.{{CHAPTER}}</h2>
+            </div>
+            
+            <div class="space-y-1 mb-6">
+                <h3 class="font-medium text-gray-700 mb-2">Day 1</h3>
+                <a href="#section-1" class="chapter-nav-item active block">Introduction</a>
+                <a href="#section-2" class="chapter-nav-item block">Section 2</a>
+                <a href="#section-3" class="chapter-nav-item block">Section 3</a>
+                <a href="#section-4" class="chapter-nav-item block">Skill Builder</a>
+                <a href="#section-5" class="chapter-nav-item block">Reflection</a>
+            </div>
+            
+            <div class="space-y-1">
+                <h3 class="font-medium text-gray-700 mb-2">Day 2</h3>
+                <a href="day2.html" class="block text-indigo-600 hover:text-indigo-800 py-1">
+                    Go to Day 2 Content
+                </a>
+            </div>
+        </aside>
+
+        <\!-- Main Content -->
+        <main class="lg:col-span-8 lg:col-start-3 p-6">
+            <\!-- Content will be inserted here -->
+            {{CONTENT}}
+        </main>
+    </div>
+
+    <script src="../../../../js/main.js"></script>
+</body>
+</html>
