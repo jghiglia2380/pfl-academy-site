@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "standard_number": "2",
+    "standard_title": "Taxes",
+    "chapter_number": "2.3",
+    "chapter_title": "Understanding Tax Filing Requirements",
+    "template_format": "standard",
+    "content_density": "standard",
+    "day1_day2_connection": "complementary"
+  },
+  "content": {
+    "student_day1": "Standard-2/Chapter-2-3/student/day1.html",
+    "student_day2": "Standard-2/Chapter-2-3/student/day2.html",
+    "teacher_day1": "Standard-2/Chapter-2-3/teacher/day1.html",
+    "teacher_day2": "Standard-2/Chapter-2-3/teacher/day2.html"
+  }
+}
