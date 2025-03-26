@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "standard_number": "3",
+    "standard_title": "Banking",
+    "chapter_number": "3.1",
+    "chapter_title": "Understanding Different Types of Financial Service Providers",
+    "template_format": "standard",
+    "content_density": "basic",
+    "day1_day2_connection": "complementary"
+  },
+  "content": {
+    "student_day1": "Standard-3/Chapter-3-1/student/day1.html",
+    "student_day2": "Standard-3/Chapter-3-1/student/day2.html",
+    "teacher_day1": "Standard-3/Chapter-3-1/teacher/day1.html",
+    "teacher_day2": "Standard-3/Chapter-3-1/teacher/day2.html"
+  }
+}
