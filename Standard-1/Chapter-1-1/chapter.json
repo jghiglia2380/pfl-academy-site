@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "standard_number": "1",
+    "standard_title": "Personal Financial Literacy",
+    "chapter_number": "1.1",
+    "chapter_title": "Jobs vs. Careers",
+    "template_format": "project-based",
+    "content_density": "standard",
+    "day1_day2_connection": "complementary"
+  },
+  "content": {
+    "student_day1": "Standard-1/Chapter-1-1/student/day1.html",
+    "student_day2": "Standard-1/Chapter-1-1/student/day2.html",
+    "teacher_day1": "Standard-1/Chapter-1-1/teacher/day1.html",
+    "teacher_day2": "Standard-1/Chapter-1-1/teacher/day2.html"
+  }
+}
