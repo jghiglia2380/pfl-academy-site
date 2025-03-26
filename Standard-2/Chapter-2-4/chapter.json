@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "standard_number": "2",
+    "standard_title": "Taxes",
+    "chapter_number": "2.4",
+    "chapter_title": "Understanding Tax Deductions and Credits",
+    "template_format": "case-study",
+    "content_density": "standard",
+    "day1_day2_connection": "extension"
+  },
+  "content": {
+    "student_day1": "Standard-2/Chapter-2-4/student/day1.html",
+    "student_day2": "Standard-2/Chapter-2-4/student/day2.html",
+    "teacher_day1": "Standard-2/Chapter-2-4/teacher/day1.html",
+    "teacher_day2": "Standard-2/Chapter-2-4/teacher/day2.html"
+  }
+}
