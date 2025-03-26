@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "standard_number": "15",
+    "standard_title": "Career Readiness",
+    "chapter_number": "15.1",
+    "chapter_title": "Career Exploration and Goal Setting",
+    "template_format": "project-based",
+    "content_density": "standard",
+    "day1_day2_connection": "extension"
+  },
+  "content": {
+    "student_day1": "Standard-15/Chapter-15-1/student/day1.html",
+    "student_day2": "Standard-15/Chapter-15-1/student/day2.html",
+    "teacher_day1": "Standard-15/Chapter-15-1/teacher/day1.html",
+    "teacher_day2": "Standard-15/Chapter-15-1/teacher/day2.html"
+  }
+}
