@@ -664,7 +664,7 @@
         // Toggle format visibility based on template_format parameter
         function initializeTemplateFormat() {
             // Default to standard format (templateFormat would be replaced with actual value from curriculum architecture)
-            const templateFormat = 'standard'; // 'standard', 'project-based', or 'case-study'
+            const templateFormat = '{{template_format}}'; // 'standard', 'project-based', or 'case-study'
             
             // Hide all format containers first
             document.querySelectorAll('.format-container').forEach(container => {
